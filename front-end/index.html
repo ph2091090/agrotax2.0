@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgroTax — Calculadora Tributária</title>
+<meta name="description" content="Estimativa tributária simples para produtores rurais, cooperativas, contadores e profissionais do agronegócio.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="#inicio">Agro<span>Tax</span></a>
+  <nav aria-label="Principal">
+    <a href="#inicio">Início</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#guia">Guia Fiscal</a>
+    <a href="#sobre">Sobre</a>
+  </nav>
+  <a class="botao botao-pequeno" href="#calculadora">Calcular agora</a>
+</header>
+
+<main>
+  <section id="inicio" class="heroi conteiner">
+    <div>
+      <span class="selo">Tecnologia para o agronegócio</span>
+      <h1>Simplifique a sua <em>estimativa tributária</em></h1>
+      <p class="destaque">O AgroTax ajuda produtores rurais, cooperativas, contadores e profissionais do agronegócio a estimar a carga tributária de operações agrícolas de forma simples e organizada.</p>
+      <div class="acoes">
+        <a class="botao" href="#calculadora">Abrir calculadora</a>
+        <a class="botao botao-claro" href="#guia">Conhecer o guia fiscal</a>
+      </div>
+      <p class="aviso">Os resultados são estimativas e não substituem a análise de um contador ou especialista tributário.</p>
+    </div>
+    <aside class="cartao-heroi" aria-label="Tributos considerados">
+      <div class="broto" aria-hidden="true">🌱</div>
+      <h2>Tributação no agronegócio</h2>
+      <p>Consulte os produtos cadastrados e faça uma simulação rápida.</p>
+      <div class="fichas">
+        <div><b>ICMS</b><small>Estimativa</small></div>
+        <div><b>IPI</b><small>Estimativa</small></div>
+        <div><b>PIS/COFINS</b><small>Estimativa</small></div>
+        <div><b>Funrural</b><small>Estimativa</small></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="conteiner secao">
+    <p class="sobretitulo">Por que usar o AgroTax?</p>
+    <h2 class="titulo">Uma forma mais simples de organizar sua estimativa tributária</h2>
+    <p class="subtitulo">Reúna os dados da operação e consulte uma estimativa dos principais tributos considerados pelo sistema.</p>
+    <div class="grade3">
+      <article class="cartao"><div class="icone">🧮</div><h3>Cálculo simplificado</h3><p>Informe os dados da operação e receba o resultado estimado dos tributos cadastrados.</p></article>
+      <article class="cartao"><div class="icone">🌾</div><h3>Foco no agronegócio</h3><p>O sistema foi pensado para operações agrícolas envolvendo produtos do campo.</p></article>
+      <article class="cartao"><div class="icone">📊</div><h3>Resultado organizado</h3><p>Veja valores individuais, o total estimado e a carga tributária percentual.</p></article>
+    </div>
+  </section>
+
+  <section id="calculadora" class="conteiner secao">
+    <p class="sobretitulo">Calculadora tributária</p>
+    <h2 class="titulo">Faça sua simulação</h2>
+    <p class="subtitulo">Selecione o produto, informe o valor da operação e escolha as opções correspondentes.</p>
+    <div class="calculadora">
+      <form id="form-calculo" class="painel" novalidate>
+        <label>Produto
+          <select name="produtoId" id="produto" required><option value="">Carregando produtos…</option></select>
+        </label>
+        <label>Valor da operação (R$)
+          <input name="valor" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Ex.: 100000" required>
+        </label>
+        <label>Regime tributário
+          <select name="regime" id="regime" required></select>
+        </label>
+        <label>Tipo de operação
+          <select name="operacao" id="operacao" required><option>Compra</option><option>Venda</option></select>
+        </label>
+        <button class="botao botao-total" id="botao-calcular" type="submit">Calcular tributos</button>
+        <p class="dica">O resultado apresentado é uma estimativa baseada nas regras cadastradas no sistema.</p>
+      </form>
+      <aside class="resultado" id="resultado" aria-live="polite">
+        <small>Resultado da simulação</small>
+        <h3>Resumo tributário</h3>
+        <p class="apagado">Preencha os dados ao lado e clique em <b>Calcular tributos</b>.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="conteiner secao">
+    <p class="sobretitulo">Como funciona</p>
+    <h2 class="titulo">Três passos para fazer uma simulação</h2>
+    <ol class="passos">
+      <li><span>1</span><h3>Escolha o produto</h3><p>Selecione o produto agrícola da operação.</p></li>
+      <li><span>2</span><h3>Informe os dados</h3><p>Digite o valor, o regime e o tipo de operação.</p></li>
+      <li><span>3</span><h3>Consulte o resultado</h3><p>Veja a estimativa de cada tributo e o total.</p></li>
+    </ol>
+  </section>
+
+  <section id="guia" class="conteiner secao">
+    <p class="sobretitulo">Guia fiscal</p>
+    <h2 class="titulo">Entenda os principais tributos considerados pelo AgroTax</h2>
+    <p class="subtitulo">Consulte informações organizadas sobre os tributos utilizados nas simulações do sistema.</p>
+    <div class="grade3" id="guia-tributos"><p class="apagado">Carregando…</p></div>
+  </section>
+
+  <section id="sobre" class="conteiner secao sobre">
+    <p class="sobretitulo">Sobre o projeto</p>
+    <h2 class="titulo">AgroTax</h2>
+    <p class="subtitulo">Projeto criado para facilitar a compreensão da tributação no agronegócio. Os valores exibidos são estimativas e dependem das regras cadastradas; sempre confirme com um contador.</p>
+
+    <form id="form-contato" class="painel contato" novalidate>
+      <h3>Fale com a gente</h3>
+      <label>Nome <input name="nome" type="text" maxlength="100" autocomplete="name" required></label>
+      <label>E-mail <input name="email" type="email" maxlength="254" autocomplete="email" required></label>
+      <label>Mensagem <textarea name="mensagem" rows="4" maxlength="1000" required></textarea></label>
+      <div class="armadilha" aria-hidden="true"><label>Não preencha <input name="site" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <p class="dica">Usamos seu nome e e-mail apenas para responder a esta mensagem.</p>
+      <button class="botao botao-total" id="botao-contato" type="submit">Enviar mensagem</button>
+    </form>
+  </section>
+</main>
+
+<footer class="rodape">© <span id="ano"></span> AgroTax — estimativas tributárias para o agronegócio.</footer>
+<div id="aviso-toast" role="status" aria-live="polite"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
