@@ -1,22 +1,41 @@
 import { api, esc, porcento } from './utilitarios.js';
+import { t, textoServidor, aoTraduzir } from './i18n.js';
 
 export async function iniciarGuia() {
   const caixa = document.getElementById('guia-tributos');
-  try {
-    const tributos = await api('/tributos');
-    caixa.innerHTML = tributos
-      .map((t) => {
+  const estado = { tributos: null, erro: false };
+
+  function montar() {
+    if (estado.erro) {
+      caixa.innerHTML = `<p class="apagado">${esc(t('guia.erro'))}</p>`;
+      return;
+    }
+    if (!estado.tributos) {
+      caixa.innerHTML = `<p class="apagado">${esc(t('guia.carregando'))}</p>`;
+      return;
+    }
+
+    caixa.innerHTML = estado.tributos
+      .map((tributo) => {
         const faixa =
-          t.aliquotaMinima === null
+          tributo.aliquotaMinima === null
             ? ''
-            : t.aliquotaMinima === t.aliquotaMaxima
-              ? porcento(t.aliquotaMinima)
-              : `${porcento(t.aliquotaMinima)} a ${porcento(t.aliquotaMaxima)}`;
-        return `<article class="cartao"><h3>${esc(t.rotulo)}</h3><p>${esc(t.descricao)}</p>
-                ${faixa ? `<span class="faixa">Alíquotas cadastradas: ${faixa}</span>` : ''}</article>`;
+            : tributo.aliquotaMinima === tributo.aliquotaMaxima
+              ? porcento(tributo.aliquotaMinima)
+              : `${porcento(tributo.aliquotaMinima)} a ${porcento(tributo.aliquotaMaxima)}`;
+        return `<article class="cartao"><h3>${esc(textoServidor(tributo.rotulo))}</h3><p>${esc(textoServidor(tributo.descricao))}</p>
+                ${faixa ? `<span class="faixa">${esc(t('guia.faixa', { faixa }))}</span>` : ''}</article>`;
       })
       .join('');
-  } catch {
-    caixa.innerHTML = '<p class="apagado">Não foi possível carregar o guia agora.</p>';
   }
+
+  montar();
+  aoTraduzir(montar);
+
+  try {
+    estado.tributos = await api('/tributos');
+  } catch {
+    estado.erro = true;
+  }
+  montar();
 }

@@ -3,6 +3,7 @@ const simulacaoModelo = require('../modelos/simulacaoModelo');
 const { simular } = require('../servicos/calculadoraServico');
 const { validarSimulacao } = require('../utilitarios/validadores');
 const { ErroAplicacao } = require('../middlewares/erros');
+const { traduzirSimulacao } = require('../utilitarios/i18n');
 
 function listarProdutos(req, res) {
   res.json({ sucesso: true, dados: produtoModelo.listarAtivos() });
@@ -11,7 +12,7 @@ function listarProdutos(req, res) {
 function calcular(req, res) {
   const { erros, dados } = validarSimulacao(req.body);
   if (erros.length) throw new ErroAplicacao(erros.join(' '), 400);
-  res.status(201).json({ sucesso: true, dados: simular(dados) });
+  res.status(201).json({ sucesso: true, dados: traduzirSimulacao(simular(dados), req?.idioma) });
 }
 
 function buscarSimulacao(req, res) {

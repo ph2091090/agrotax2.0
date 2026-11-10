@@ -5,6 +5,7 @@ const cors = require('cors');
 const { origensPermitidas, raizProjeto } = require('./config/ambiente');
 const seguranca = require('./middlewares/seguranca');
 const registroRequisicoes = require('./middlewares/registroRequisicoes');
+const idioma = require('./middlewares/idioma');
 const { naoEncontrado, tratadorErros } = require('./middlewares/erros');
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(registroRequisicoes);
 app.use(seguranca);
 app.use(cors({ origin: origensPermitidas.length ? origensPermitidas : false }));
 app.use(express.json({ limit: '10kb' }));
+app.use(idioma); // define req.idioma a partir do Accept-Language (tradução das respostas)
 
 app.get('/api/saude', (req, res) => res.json({ sucesso: true, dados: { status: 'ok' } }));
 app.use('/api', require('./rotas/calculadoraRotas'));

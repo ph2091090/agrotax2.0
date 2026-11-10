@@ -1,4 +1,5 @@
 import { api, aviso } from './utilitarios.js';
+import { textoServidor } from './i18n.js';
 
 export function iniciarContato() {
   const form = document.getElementById('form-contato');
@@ -10,10 +11,10 @@ export function iniciarContato() {
     botao.disabled = true;
     try {
       const r = await api('/leads', { metodo: 'POST', corpo });
-      aviso(r.mensagem);
+      aviso(textoServidor(r.mensagem));
       form.reset();
     } catch (e) {
-      aviso(e.message);
+      aviso(textoServidor(e.message));
     } finally {
       botao.disabled = false;
     }

@@ -1,4 +1,6 @@
 // Limitador simples em memória por IP (suficiente para uma única instância).
+const { traduzir } = require('../utilitarios/i18n');
+
 function limitadorRequisicoes({ janelaMs = 60_000, maximo = 60 } = {}) {
   const contagem = new Map();
   setInterval(() => contagem.clear(), janelaMs).unref();
@@ -8,7 +10,9 @@ function limitadorRequisicoes({ janelaMs = 60_000, maximo = 60 } = {}) {
     contagem.set(req.ip, total);
     if (total > maximo) {
       res.set('Retry-After', String(Math.ceil(janelaMs / 1000)));
-      return res.status(429).json({ sucesso: false, erro: 'Muitas requisições. Aguarde um instante.' });
+      return res
+        .status(429)
+        .json({ sucesso: false, erro: traduzir('Muitas requisições. Aguarde um instante.', req?.idioma) });
     }
     next();
   };
