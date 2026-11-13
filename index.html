@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="meta.titulo">AgroTax — Calculadora Tributária</title>
+<meta name="description" data-i18n-content="meta.descricao" content="Estimativa tributária simples para produtores rurais, cooperativas, contadores e profissionais do agronegócio.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script src="js/tema-inicio.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="#inicio">Agro<span>Tax</span></a>
+  <nav aria-label="Principal" data-i18n-aria="topo.nav_principal">
+    <a href="#inicio" data-i18n="topo.inicio">Início</a>
+    <a href="#calculadora" data-i18n="topo.calculadora">Calculadora</a>
+    <a href="#guia" data-i18n="topo.guia">Guia Fiscal</a>
+    <a href="#sobre" data-i18n="topo.sobre">Sobre</a>
+  </nav>
+  <div class="acoes-topo">
+    <div class="idioma" role="group" aria-label="Selecionar idioma" data-i18n-aria="topo.idioma_grupo">
+      <button type="button" class="idioma-opcao" data-idioma="pt" aria-pressed="true" aria-label="Português" lang="pt-BR">PT</button>
+      <button type="button" class="idioma-opcao" data-idioma="es" aria-pressed="false" aria-label="Español" lang="es">ES</button>
+    </div>
+    <button type="button" id="botao-tema" class="botao-tema" aria-pressed="false" aria-label="Alternar para o tema escuro">
+      <span id="icone-tema" aria-hidden="true">🌙</span>
+    </button>
+    <a class="botao botao-pequeno" href="#calculadora" data-i18n="topo.cta">Calcular agora</a>
+  </div>
+</header>
+
+<main>
+  <section id="inicio" class="heroi conteiner">
+    <div>
+      <span class="selo" data-i18n="hero.selo">Tecnologia para o agronegócio</span>
+      <h1 data-i18n-html="hero.titulo">Simplifique a sua <em>estimativa tributária</em></h1>
+      <p class="destaque" data-i18n="hero.destaque">O AgroTax ajuda produtores rurais, cooperativas, contadores e profissionais do agronegócio a estimar a carga tributária de operações agrícolas de forma simples e organizada.</p>
+      <div class="acoes">
+        <a class="botao" href="#calculadora" data-i18n="hero.abrir">Abrir calculadora</a>
+        <a class="botao botao-claro" href="#guia" data-i18n="hero.conhecer">Conhecer o guia fiscal</a>
+      </div>
+      <p class="aviso" data-i18n="hero.aviso">Os resultados são estimativas e não substituem a análise de um contador ou especialista tributário.</p>
+    </div>
+    <aside class="cartao-heroi" aria-label="Tributos considerados" data-i18n-aria="hero.cartao_aria">
+      <div class="broto" aria-hidden="true">🌱</div>
+      <h2 data-i18n="hero.cartao_titulo">Tributação no agronegócio</h2>
+      <p data-i18n="hero.cartao_texto">Consulte os produtos cadastrados e faça uma simulação rápida.</p>
+      <div class="fichas">
+        <div><b>ICMS</b><small data-i18n="hero.estimativa">Estimativa</small></div>
+        <div><b>IPI</b><small data-i18n="hero.estimativa">Estimativa</small></div>
+        <div><b>PIS/COFINS</b><small data-i18n="hero.estimativa">Estimativa</small></div>
+        <div><b>Funrural</b><small data-i18n="hero.estimativa">Estimativa</small></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="conteiner secao">
+    <p class="sobretitulo" data-i18n="porque.sobretitulo">Por que usar o AgroTax?</p>
+    <h2 class="titulo" data-i18n="porque.titulo">Uma forma mais simples de organizar sua estimativa tributária</h2>
+    <p class="subtitulo" data-i18n="porque.subtitulo">Reúna os dados da operação e consulte uma estimativa dos principais tributos considerados pelo sistema.</p>
+    <div class="grade3">
+      <article class="cartao"><div class="icone">🧮</div><h3 data-i18n="porque.card1_titulo">Cálculo simplificado</h3><p data-i18n="porque.card1_texto">Informe os dados da operação e receba o resultado estimado dos tributos cadastrados.</p></article>
+      <article class="cartao"><div class="icone">🌾</div><h3 data-i18n="porque.card2_titulo">Foco no agronegócio</h3><p data-i18n="porque.card2_texto">O sistema foi pensado para operações agrícolas envolvendo produtos do campo.</p></article>
+      <article class="cartao"><div class="icone">📊</div><h3 data-i18n="porque.card3_titulo">Resultado organizado</h3><p data-i18n="porque.card3_texto">Veja valores individuais, o total estimado e a carga tributária percentual.</p></article>
+    </div>
+  </section>
+
+  <section id="calculadora" class="conteiner secao">
+    <p class="sobretitulo" data-i18n="calc.sobretitulo">Calculadora tributária</p>
+    <h2 class="titulo" data-i18n="calc.titulo">Faça sua simulação</h2>
+    <p class="subtitulo" data-i18n="calc.subtitulo">Selecione o produto, informe o valor da operação e escolha as opções correspondentes.</p>
+    <div class="calculadora">
+      <form id="form-calculo" class="painel" novalidate>
+        <label>
+          <span data-i18n="calc.produto">Produto</span>
+          <select name="produtoId" id="produto" required><option value="" data-i18n="calc.carregando">Carregando produtos…</option></select>
+        </label>
+        <label>
+          <span data-i18n="calc.valor">Valor da operação (R$)</span>
+          <input name="valor" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Ex.: 100000" data-i18n-placeholder="calc.valor_exemplo" required>
+        </label>
+        <label>
+          <span data-i18n="calc.regime">Regime tributário</span>
+          <select name="regime" id="regime" required></select>
+        </label>
+        <label>
+          <span data-i18n="calc.operacao">Tipo de operação</span>
+          <select name="operacao" id="operacao" required>
+            <option value="Compra" data-i18n="calc.op_compra">Compra</option>
+            <option value="Venda" data-i18n="calc.op_venda">Venda</option>
+          </select>
+        </label>
+        <button class="botao botao-total" id="botao-calcular" type="submit" data-i18n="calc.botao">Calcular tributos</button>
+        <p class="dica" data-i18n="calc.dica">O resultado apresentado é uma estimativa baseada nas regras cadastradas no sistema.</p>
+      </form>
+      <aside class="resultado" id="resultado" aria-live="polite">
+        <small data-i18n="calc.res_small">Resultado da simulação</small>
+        <h3 data-i18n="calc.res_titulo">Resumo tributário</h3>
+        <p class="apagado" data-i18n-html="calc.res_vazio">Preencha os dados ao lado e clique em <b>Calcular tributos</b>.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="conteiner secao">
+    <p class="sobretitulo" data-i18n="passos.sobretitulo">Como funciona</p>
+    <h2 class="titulo" data-i18n="passos.titulo">Três passos para fazer uma simulação</h2>
+    <ol class="passos">
+      <li><span>1</span><h3 data-i18n="passos.passo1_titulo">Escolha o produto</h3><p data-i18n="passos.passo1_texto">Selecione o produto agrícola da operação.</p></li>
+      <li><span>2</span><h3 data-i18n="passos.passo2_titulo">Informe os dados</h3><p data-i18n="passos.passo2_texto">Digite o valor, o regime e o tipo de operação.</p></li>
+      <li><span>3</span><h3 data-i18n="passos.passo3_titulo">Consulte o resultado</h3><p data-i18n="passos.passo3_texto">Veja a estimativa de cada tributo e o total.</p></li>
+    </ol>
+  </section>
+
+  <section id="guia" class="conteiner secao">
+    <p class="sobretitulo" data-i18n="guia.sobretitulo">Guia fiscal</p>
+    <h2 class="titulo" data-i18n="guia.titulo">Entenda os principais tributos considerados pelo AgroTax</h2>
+    <p class="subtitulo" data-i18n="guia.subtitulo">Consulte informações organizadas sobre os tributos utilizados nas simulações do sistema.</p>
+    <div class="grade3" id="guia-tributos"><p class="apagado" data-i18n="guia.carregando">Carregando…</p></div>
+  </section>
+
+  <section id="sobre" class="conteiner secao sobre">
+    <p class="sobretitulo" data-i18n="sobre.sobretitulo">Sobre o projeto</p>
+    <h2 class="titulo" data-i18n="sobre.titulo">AgroTax</h2>
+    <p class="subtitulo" data-i18n="sobre.subtitulo">Projeto criado para facilitar a compreensão da tributação no agronegócio. Os valores exibidos são estimativas e dependem das regras cadastradas; sempre confirme com um contador.</p>
+
+    <form id="form-contato" class="painel contato" novalidate>
+      <h3 data-i18n="sobre.form_titulo">Fale com a gente</h3>
+      <label><span data-i18n="sobre.nome">Nome</span> <input name="nome" type="text" maxlength="100" autocomplete="name" required></label>
+      <label><span data-i18n="sobre.email">E-mail</span> <input name="email" type="email" maxlength="254" autocomplete="email" required></label>
+      <label><span data-i18n="sobre.mensagem">Mensagem</span> <textarea name="mensagem" rows="4" maxlength="1000" required></textarea></label>
+      <div class="armadilha" aria-hidden="true"><label><span data-i18n="sobre.armadilha">Não preencha</span> <input name="site" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <p class="dica" data-i18n="sobre.dica">Usamos seu nome e e-mail apenas para responder a esta mensagem.</p>
+      <button class="botao botao-total" id="botao-contato" type="submit" data-i18n="sobre.botao">Enviar mensagem</button>
+    </form>
+  </section>
+</main>
+
+<footer class="rodape">© <span id="ano"></span> <span data-i18n="rodape.texto">AgroTax — estimativas tributárias para o agronegócio.</span></footer>
+<div id="aviso-toast" role="status" aria-live="polite"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
